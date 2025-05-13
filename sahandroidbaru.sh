@@ -6,6 +6,10 @@ pkg update
 # Install OpenSSH
 pkg install -y openssh
 
+pkg install jq -y
+
+termux-setup-storage
+
 # install python
 pkg install -y python
 
