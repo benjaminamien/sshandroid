@@ -38,6 +38,7 @@ while true; do
         # Bersihkan log lama
         rm -f serveo_log.txt
 
+        
         # Jalankan SSH Serveo dengan stdbuf agar tidak buffering
         stdbuf -oL ssh -o StrictHostKeyChecking=no -R 0:localhost:8022 serveo.net > serveo_log.txt 2>&1 &
         SSH_PID=$!
@@ -172,7 +173,7 @@ chmod +x ~/.termux/boot/autoserveo.sh
 echo 'export PS1="benjamin@termux:~$ "' >> ~/.bashrc
 
 # Muat ulang file konfigurasi bash untuk menerapkan perubahan
-source ~/.bashrc
+. ~/.bashrc
 
 # Menyampaikan bahwa setup telah selesai
 echo "Setup selesai! SSH siap digunakan."
