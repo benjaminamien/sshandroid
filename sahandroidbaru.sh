@@ -6,6 +6,8 @@ pkg update
 # Install OpenSSH
 pkg install -y openssh
 
+pkg install git
+
 pkg install jq -y
 
 termux-setup-storage
