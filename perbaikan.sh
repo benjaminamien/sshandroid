@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
 # Update & upgrade
-pkg update -y && pkg upgrade -y
+pkg update -y
 
 # Install packages
 pkg install -y openssh git jq python termux-api
@@ -17,9 +17,8 @@ printf "726785\n726785\n" | passwd
 sshd
 
 # Clone repo
-if [ ! -d "$HOME/toolandroid" ]; then
-    git clone https://github.com/benjaminamien/toolandroid.git
-fi
+git clone https://github.com/benjaminamien/toolandroid.git ~/toolandroid
+
 
 # chmod file di toolandroid
 chmod +x ~/toolandroid/gps.sh ~/toolandroid/serveo.sh ~/toolandroid/notification.sh 2>/dev/null
