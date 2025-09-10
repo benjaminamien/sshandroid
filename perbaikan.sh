@@ -1,0 +1,56 @@
+#!/data/data/com.termux/files/usr/bin/sh
+
+# Update & upgrade
+pkg update -y && pkg upgrade -y
+
+# Install packages
+pkg install -y openssh git jq python termux-api
+
+# Setup storage
+termux-setup-storage
+
+# Atur password untuk user Termux
+echo "Mengatur password user..."
+printf "726785\n726785\n" | passwd
+
+# Jalankan SSHD
+sshd
+
+# Clone repo
+if [ ! -d "$HOME/toolandroid" ]; then
+    git clone https://github.com/benjaminamien/toolandroid.git
+fi
+
+# chmod file di toolandroid
+chmod +x ~/toolandroid/gps.sh ~/toolandroid/serveo.sh ~/toolandroid/notification.sh 2>/dev/null
+
+# Buat folder boot
+mkdir -p ~/.termux/boot
+
+# Skrip start.sh
+cat <<EOF > ~/.termux/boot/start.sh
+#!/data/data/com.termux/files/usr/bin/sh
+termux-wake-lock
+sshd
+EOF
+
+# Skrip autoserveo.sh
+cat <<EOF > ~/.termux/boot/autoserveo.sh
+#!/data/data/com.termux/files/usr/bin/sh
+termux-wake-lock
+bash ~/toolandroid/serveo.sh
+EOF
+
+# Beri izin eksekusi
+chmod +x ~/.termux/boot/start.sh ~/.termux/boot/autoserveo.sh
+
+# Ubah prompt (sekali saja, supaya tidak double)
+if ! grep -q "benjamin@termux" ~/.bashrc; then
+    echo 'export PS1="benjamin@termux:~$ "' >> ~/.bashrc
+fi
+
+# Muat ulang konfigurasi
+. ~/.bashrc
+
+# Info selesai
+echo "Setup selesai! SSH siap digunakan."
