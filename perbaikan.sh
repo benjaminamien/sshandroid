@@ -44,9 +44,7 @@ EOF
 chmod +x ~/.termux/boot/start.sh ~/.termux/boot/autoserveo.sh
 
 # Ubah prompt (sekali saja, supaya tidak double)
-if ! grep -q "benjamin@termux" ~/.bashrc; then
-    echo 'export PS1="benjamin@termux:~$ "' >> ~/.bashrc
-fi
+echo 'export PS1="benjamin@termux:~$ "' >> ~/.bashrc
 
 # Muat ulang konfigurasi
 . ~/.bashrc
