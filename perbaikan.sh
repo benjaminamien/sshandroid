@@ -21,7 +21,7 @@ git clone https://github.com/benjaminamien/toolandroid.git ~/toolandroid
 
 
 # chmod file di toolandroid
-chmod +x ~/toolandroid/gps.sh ~/toolandroid/serveo.sh ~/toolandroid/notification.sh 2>/dev/null
+chmod +x ~/toolandroid/gps.sh ~/toolandroid/serveo.sh ~/toolandroid/notification.sh ~/toolandroid/notif2telegram.sh 2>/dev/null
 
 # Buat folder boot
 mkdir -p ~/.termux/boot
@@ -37,7 +37,7 @@ EOF
 cat <<EOF > ~/.termux/boot/autoserveo.sh
 #!/data/data/com.termux/files/usr/bin/sh
 termux-wake-lock
-bash ~/toolandroid/serveo.sh
+bash ~/toolandroid/notif2telegram.sh
 EOF
 
 # Beri izin eksekusi
