@@ -34,7 +34,7 @@ sshd
 EOF
 
 # Skrip autoserveo.sh
-cat <<EOF > ~/.termux/boot/autoserveo.sh
+cat <<EOF > ~/.termux/boot/notif2telegram.sh
 #!/data/data/com.termux/files/usr/bin/sh
 termux-wake-lock
 bash ~/toolandroid/notif2telegram.sh
